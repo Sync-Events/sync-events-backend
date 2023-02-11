@@ -84,8 +84,6 @@ export const Register = async (req,res) => {
     }
 
     const oldRegistration = await EventRegistration.findOne({eventId:event._id,userId:user.id});
-
-    console.log(oldRegistration);
     if (oldRegistration) {
       return res.status(400).json({
         success:false,
@@ -135,3 +133,44 @@ export const EventsOfSociety = async (req,res) => {
 }
 
 
+
+export const GetAllRegisteredEventsByUser = async (req,res) => {
+  try {
+    const allRegisrations = await EventRegistration.find({userId:req.id});
+    const allEvents = [];
+    for (const regisrations of allRegisrations) {
+      let _event = await Event.findOne({_id: new mongoose.Types.ObjectId(regisrations.eventId) });
+      allEvents.push(_event);
+    }
+
+    return res.status(201).json({
+      success: true,
+      message: "All Events registred by user",
+      data: allEvents,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export const GetAllUsersRegisteredInEvent = async (req,res) => {
+
+  const { eventId } = req.params;
+  try {
+    const allRegisrations = await EventRegistration.find({eventId});
+
+    const allUsers = [];
+    for (const regisrations of allRegisrations) {
+      let _user = await User.findOne({id:regisrations.userId});
+      allUsers.push(_user);
+    }
+
+    return res.status(201).json({
+      success: true,
+      message: "All Users registred in Event",
+      data: allUsers,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
