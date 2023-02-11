@@ -4,14 +4,13 @@ const router = Router();
 
 // Controllers
 import {
-  RegisterSociety,
+  Register,
+  Login
 } from "../controllers/AuthController.js";
 
 // Auth Routes
-router.post("/register/society", RegisterSociety);
-// router.post("/register/user", UserLogin);
-// router.post("/login/society", UserLogin);
-// router.post("/login/user", UserLogin);
+router.post("/register", Register);
+router.post("/login", Login);
 
 
 export default router;
