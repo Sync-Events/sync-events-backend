@@ -47,10 +47,6 @@ export const Publish = async (req, res) => {
         message: "Problem is in ticket contract generation ",
       });
     }
-
-    console.log("ticketContractAddress");
-    console.log(ticketContractAddress);
-
     const newEvent = await Event.create({ societyId: user.id, banner, eventName, eventDescription, venue, contact, eventDates, registrationDates, ticketContractAddress });
 
     if (newEvent) {
