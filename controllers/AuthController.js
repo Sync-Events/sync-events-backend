@@ -98,3 +98,34 @@ export const Login = async (req, res) => {
         });
     }
 }
+
+
+export const GetUser = async(req,res) => {
+    const { id } = req.params;
+
+    console.log(id);
+      try {
+        const user = await User.findOne({
+            id
+        });
+
+        user.password = "Na"
+
+        if (user) {
+            return res.status(201).json({
+                success: true,
+                message: "User Found",
+                data: user,
+              });
+        } else {
+            return res.status(404).json({
+                success: false,
+                message: "User Not Found",
+              });
+        }
+    } catch (err) {
+        res.status(500).json({
+            message: err.message,
+        });
+    }
+}
