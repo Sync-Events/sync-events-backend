@@ -4,7 +4,7 @@ const router = Router();
 
 // Controllers
 import {Publish, GetEvents, EventsOfSociety, Register, GetAllRegisteredEventsByUser, GetAllUsersRegisteredInEvent} from "../controllers/event/EventController.js";
-import UserAuth from "../middleware/userauth.js";
+import UserAuth from "../middleware/UserAuth.js";
 
 // Auth Routes
 router.post("/publish",UserAuth,Publish);
