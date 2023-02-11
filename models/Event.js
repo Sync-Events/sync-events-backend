@@ -10,7 +10,10 @@ const eventSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        
+        registrationFee:{
+            type: Object, // {"isFree":false,"Inr":"","Matic":""}
+            required: true,
+        },
         eventDescription: {
             type: String,
             required: true,
