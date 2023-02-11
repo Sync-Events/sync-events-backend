@@ -73,9 +73,6 @@ export const Login = async (req, res) => {
                 message: "User not found",
             });
         } else {
-
-            console.log("process.env.SIGNIN_SECRET");
-            console.log(process.env.SIGNIN_SECRET);
             if (bcrypt.compareSync(password, user.password)) {
                 const { username, email, id } = user;
                 const token = jwt.sign(

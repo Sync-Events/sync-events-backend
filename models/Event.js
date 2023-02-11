@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema(
+const eventSchema = new mongoose.Schema(
     {
         banner: {
             type: String,
@@ -19,8 +19,8 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        contactEmail: {
-            type: String,
+        contact: {
+            type: Array,
             required: true,
         },
         eventDates:{
@@ -30,9 +30,13 @@ const userSchema = new mongoose.Schema(
         registrationDates:{
             type:Object, // end and start
             required:true
+        },
+        societyId:{
+            required:true,
+            type:String
         }
     },
     { timestamps: true }
 );
 
-export default mongoose.model("User", userSchema);
+export default mongoose.model("Event", eventSchema);
