@@ -35,7 +35,6 @@ const userSchema = new mongoose.Schema(
         },
         phoneNo: {
             type: String,
-            unique: true,
         },
         email: {
             type: String,
@@ -53,16 +52,9 @@ const userSchema = new mongoose.Schema(
         convenerDetail:{
             type:Object
         },
-        socialLinks: [
-            {
-                name: {
-                    type: String,
-                },
-                link: {
-                    type: String,
-                }
-            }
-        ]
+        socialLinks: {
+           type:Array
+        }
 
     },
     { timestamps: true }

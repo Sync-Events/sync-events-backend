@@ -23,9 +23,6 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        publishedData:{
-            type:Date,
-        },
         eventDates:{
             type:Object,
             required:true

@@ -35,6 +35,7 @@ export const RegisterSociety = async (req, res) => {
             }
         }
         const newUser = await User.create({
+            id:token,
             email,userType, fullName, image, bio, collegeYear, collegeName, phoneNo, convenerDetail,socialLinks,
             password
         })
