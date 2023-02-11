@@ -21,11 +21,6 @@ export const Register = async (req, res) => {
         const password = await bcrypt.hash(req.body.password.trim(), 10);
         const {userType, fullName, image, bio, collegeYear, collegeName, phoneNo, convenerDetail,socialLinks} = req.body;
 
-        console.log(userType, fullName, image, bio, collegeYear, collegeName, phoneNo, convenerDetail,socialLinks);
-        console.log(email);
-        console.log("password");
-        console.log(password);
-
         let token = uuidv4();
         while (true) {
             const user = await User.findOne({ uuid: token });
@@ -74,22 +69,25 @@ export const Login = async (req, res) => {
             });
         } else {
             if (bcrypt.compareSync(password, user.password)) {
-                const { username, email, id } = user;
+                const {  id,userType } = user;
+
+                console.log(id,userType);
                 const token = jwt.sign(
                     {
                         id,
+                        userType
                     },
                     process.env.SIGNIN_SECRET,
                     // {
                     //     expiresIn: "3h",
                     // }
                 );
-                res.status(200).json({
+                return res.status(200).json({
                     message: "User logged in successfully",
-                    data: { token, email, username },
+                    data: { token, ...user},
                 });
             } else {
-                res.status(401).json({
+                return res.status(401).json({
                     message: "Invalid password",
                 });
             }

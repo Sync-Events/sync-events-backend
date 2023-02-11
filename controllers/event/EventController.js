@@ -23,7 +23,6 @@ export const Publish = async (req, res) => {
 
     const { banner, eventName, eventDescription, venue, contact, eventDates, registrationDates } = req.body;
 
-
     const newEvent = await Event.create({ societyId: user.id, banner, eventName, eventDescription, venue, contact, eventDates, registrationDates });
 
     if (newEvent) {
@@ -33,7 +32,7 @@ export const Publish = async (req, res) => {
         data: newEvent,
       });
     } else {
-      res.status(500).json({
+      return res.status(500).json({
         message: err.message,
       });
     }
