@@ -11,8 +11,7 @@ const EventRegistrationSchema = new mongoose.Schema(
             required: true,
         },
         paymentDetails:{
-            type:String,
-            required:true
+            type:String
         }
     },
     { timestamps: true }

@@ -8,8 +8,7 @@ import AdminAuth from "../middleware/AdminAuth.js";
 
 // Auth Routes
 router.post("/verifySociety", AdminAuth, VerifySociety);
-// router.post("/register", Publish);
-// router.post("/delete", Publish);
+
 
 
 export default router;
