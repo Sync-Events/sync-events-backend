@@ -2,9 +2,13 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
     {
+        id: {
+            type: String,
+            unique: true,
+        },
         userType:{
             type: String,
-            required:true,
+            required: true,
             enum: ["Society", "Student"]
         },
         fullName: {
@@ -16,6 +20,9 @@ const userSchema = new mongoose.Schema(
             type: String,
         },
         bio:{
+            type: String,
+        },
+        course:{
             type: String,
         },
         collegeYear: {
@@ -43,7 +50,7 @@ const userSchema = new mongoose.Schema(
         isVerifyed: {
             type: Boolean
         },
-        converDetail:{
+        convenerDetail:{
             type:Object
         },
         socialLinks: [
