@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 const EventRegistrationSchema = new mongoose.Schema(
     {
         eventId: {
-            type: Array,
+            type: String,
             required: true,
         },
         userId: {
-            type: Array,
+            type: String,
             required: true,
         },
         paymentDetails:{
