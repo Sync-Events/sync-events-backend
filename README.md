@@ -5,6 +5,10 @@ This platform provides a one stop place for students to discover events and help
 **Project Website:**
 [SyncEvents](https://sync-events.netlify.app/)
 
+
+backend url:--
+https://sync-events.onrender.com/
+
 ## About this repository
 This repo contains the backend code for the SyncEvents. We have used the follwing tech stack in the backend:
 - node.js - build web APIs
