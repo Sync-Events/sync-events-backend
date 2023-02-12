@@ -97,6 +97,8 @@ export const GetEventWithId = async (req, res) => {
 }
 
 export const Register = async (req, res) => {
+
+  console.log("Regoster" );
   const { id } = req.params;
 
   try {

@@ -58,10 +58,15 @@ export const CreateWallet = async (req, res) => {
         const user = await User.collection.findOne({
             id: req.id
         });
-
+        
         const wallet = await Web3Wallet.collection.findOne({
             userId: req.id
         });
+        console.log("user");
+        console.log(user);
+
+        console.log("wallet");
+        console.log(wallet);
 
         if (!user) {
             return res.status(409).json({
@@ -106,8 +111,8 @@ export const GetWallet = async (req, res) => {
         const wallet = await Web3Wallet.findOne({
             userId: req.id
         });
-        wallet.privateKey = "Na"
         if (wallet) {
+            wallet.privateKey = "Na"
             return res.status(200).json({
                 success:true,
                 message: "Wallet created Succefully",
