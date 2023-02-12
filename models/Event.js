@@ -27,7 +27,6 @@ const eventSchema = new mongoose.Schema(
         },
         contact: {
             type: Array,
-            required: true,
         },
         eventDates:{
             type:Object,

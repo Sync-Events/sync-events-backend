@@ -172,8 +172,8 @@ export const Register = async (req, res) => {
 export const EventsOfSociety = async (req, res) => {
   const { id } = req.params;
   try {
-
     const events = await Event.find({ societyId: id });
+
     return res.status(201).json({
       success: true,
       message: "All Events requested successfully",
