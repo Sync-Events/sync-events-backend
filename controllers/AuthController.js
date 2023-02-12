@@ -33,7 +33,7 @@ export const Register = async (req, res) => {
         const newUser = await User.create({
             id:token,
             email,userType, fullName, image, bio, collegeYear, collegeName, phoneNo, convenerDetail,socialLinks,
-            password, isVerifyed:false
+            password
         })
 
         if (newUser) {
@@ -56,18 +56,22 @@ export const Register = async (req, res) => {
 
 export const Login = async (req, res) => {
       const { email, password } = req.body;
-
-      console.log(email, password);
       try {
         const user = await User.collection.findOne({
             email
         });
 
+        console.log(user);
+        console.log(email, password);
+
         if (!user) {
             res.status(404).json({
+                success:false,
                 message: "User not found",
             });
         } else {
+            console.log("here");
+            console.log(bcrypt.compareSync(password, user.password));
             if (bcrypt.compareSync(password, user.password)) {
                 const {  id,userType } = user;
 
@@ -84,10 +88,12 @@ export const Login = async (req, res) => {
                 );
                 return res.status(200).json({
                     message: "User logged in successfully",
+                    success:true,
                     data: { token, ...user},
                 });
             } else {
                 return res.status(401).json({
+                    success:false,
                     message: "Invalid password",
                 });
             }

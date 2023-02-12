@@ -81,6 +81,21 @@ export const GetEvents = async (req, res) => {
   }
 }
 
+export const GetEventWithId = async (req, res) => {
+  try {
+    const { eventId } = req.params;
+
+    const events = await Event.findOne({_id: new mongoose.Types.ObjectId(eventId)});
+    return res.status(201).json({
+      success: true,
+      message: "All Events requested successfully",
+      data: events,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export const Register = async (req, res) => {
   const { id } = req.params;
 
@@ -207,6 +222,29 @@ export const GetAllUsersRegisteredInEvent = async (req, res) => {
       message: "All Users registred in Event",
       data: allUsers,
     });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+
+export const HasUserRegistered = async(req,res)=>{
+  const { eventId } = req.params;
+  try {
+    const isRegistered = await EventRegistration.findOne({ eventId, userId:req.id });
+
+    if (isRegistered) {
+      return res.status(201).json({
+        success: true,
+        isRegistered:true
+      });
+    } else {
+      return res.status(201).json({
+        success: true,
+        isRegistered:false
+      });
+    }
+    
   } catch (err) {
     console.log(err);
   }
